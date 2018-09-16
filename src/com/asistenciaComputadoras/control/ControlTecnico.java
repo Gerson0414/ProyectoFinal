@@ -19,6 +19,7 @@ public class ControlTecnico implements Control<Tecnico>
 	{
 		this.conexion = conexion;
 	}
+	@Override
     public ArrayList<Tecnico> list() throws Throwable{
 		ArrayList<Tecnico> lista_tecnicos = new ArrayList<>();
 		ResultSet rs;
@@ -36,7 +37,16 @@ public class ControlTecnico implements Control<Tecnico>
 		}
 		return lista_tecnicos;
 	}
-    
+	@Override
+	public void insert (Tecnico tecnico) throws Throwable{
+		conexion.SQL("Insert into tecnico (Nombre, Apellido, Usuario, Contraseña) VALUES(?,?,?,? ");
+		conexion.preparedStatement().setString(1, tecnico.getNombreTe());
+		conexion.preparedStatement().setString(2, tecnico.getApellidoTe());
+		conexion.preparedStatement().setString(3, tecnico.getUsuarioTe());
+		conexion.preparedStatement().setString(4, tecnico.getContraseñaTe());
+		conexion.CUD();
+	}
+	@Override
     public void search (Tecnico tecnico) throws Throwable {
     	ResultSet rs;
     	conexion.SQL("Select * from tecnico where CodigoTecnico");
@@ -52,7 +62,7 @@ public class ControlTecnico implements Control<Tecnico>
     	}
     	rs.close();
     }
-    
+	@Override
     public void update(Tecnico tecnico) throws Throwable {
     	if (tecnico != null)
     	{
@@ -72,6 +82,8 @@ public class ControlTecnico implements Control<Tecnico>
     		conexion.CUD();
     	}
     }
+	
+	
     
     
 }
