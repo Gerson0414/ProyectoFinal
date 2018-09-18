@@ -13,6 +13,17 @@ public class Accesorios {
 	 this.modelo = modelo;
  }
 
+
+	public Accesorios(String nombre, int precio, String modelo) {
+		this.nombre = nombre;
+		this.precio = precio;
+		this.modelo = modelo;
+	}
+	
+	public Accesorios(int codigo) {
+		this.codigo = codigo;
+	}
+
 public int getCodigo() {
 	return codigo;
 }

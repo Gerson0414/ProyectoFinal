@@ -12,7 +12,14 @@ public class Computadora
 		this.modelo = modelo;
 		this.codigo = codigo;
 	}
+	public Computadora(String marca, String modelo) {
+		this.marca = marca;
+		this.modelo = modelo;
+	}
 
+	public Computadora(int codigo) {
+		this.codigo = codigo;
+	}
 	public String getMarca() {
 		return marca;
 	}

@@ -8,35 +8,64 @@ import java.util.Scanner;
 
 public class ReadTypes 
 {
-	public static Date leerFecha(Scanner leer, String msg) {
+	public static java.sql.Date leerFecha(Scanner scanner, String msg) {
 		Date fecha;
 		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 		while (true) {
 			System.out.print(msg);
-			try {
-				fecha = formato.parse(leer.nextLine());
-				return fecha;
+			try { 
+				fecha = formato.parse(scanner.nextLine());
+				return new java.sql.Date(fecha.getTime());
 			} catch (ParseException e) {
 				System.out.println("Error en el formato de fecha");
 			}
 		}
 	}
 
-	public static int leerEntero(Scanner read, String msg) {
+	public static int leerEntero(Scanner scanner, String msg) {
 		int numero = 0;
 
 		while (true) {
 			System.out.print(msg);
 			try {
-				numero = read.nextInt();
-				read.nextLine();
+				numero = scanner.nextInt();
+				scanner.nextLine();
 				return numero;
 			} catch (java.util.InputMismatchException e) {
-				read.nextLine();
-				System.out.println(" ERROR EN FORMATO NUMÉRICO!! ");
+				scanner.nextLine();
+				System.out.println(" ERROR EN FORMATO NUMï¿½RICO!! ");
 			}
 		}
 	}
 
+	public static double leerReal(Scanner scanner, String msg) {
+		double numero = 0;
+
+		while (true) {
+			System.out.print(msg);
+			try {
+				numero = scanner.nextDouble();
+				scanner.nextLine();
+				return numero;
+			} catch (java.util.InputMismatchException e) {
+				scanner.nextLine();
+				System.out.println(" ERROR EN FORMATO NUMERICO!! ");
+			}
+		}
+	}
+
+	public static String leerCadena(Scanner scanner, String msg) {
+		String cadena = "";
+
+		while (true) {
+			System.out.print(msg);
+			try {
+				cadena = scanner.nextLine();
+				return cadena;
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("ERROR EN FORMATO DE CADENA!!");
+			}
+		}
+	}
 }

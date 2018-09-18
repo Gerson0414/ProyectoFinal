@@ -5,21 +5,22 @@ import java.util.ArrayList;
 
 import com.asistenciaComputadoras.entity.Computadora;
 
-public class ControlComputadora 
+public class ControlComputadora implements Control<Computadora>
 {
 	private Conexion conexion;
 	
 
-	public  ComputadoraControl (Conexion cconexion)
+	public  ControlComputadora (Conexion conexion)
 	{
 		this.conexion = conexion;
 	}
 	@Override
 	public ArrayList<Computadora> list() throws Throwable {
-		ArrayList<Computadora>lista_computadoras = new ArrayList<Computadora>();
+		ArrayList<Computadora> lista_computadoras = new ArrayList<Computadora>();
 		ResultSet rs;
-		conexion.SQL("Selec * from computadora");
-		rs.conexion.resultSet();
+		conexion.SQL("Select * from computadora");
+
+		rs = conexion.resultSet();
 		
 		while (rs.next()) {
 			int codigo = rs.getInt("codigo");

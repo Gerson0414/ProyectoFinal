@@ -2,6 +2,8 @@ package com.asistenciaComputadoras.view;
 
 import java.util.Scanner;
 
+import com.asistenciaComputadoras.control.Conexion;
+
 public class Principal {
 
 	public static void main(String[] args) 

@@ -15,6 +15,16 @@ public class Dueño {
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 	}
+	public Dueño(String nombre, String apellidos, String usuario, String contraseña) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+	}
+
+	public Dueño(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public int getCodigo() {
 		return codigo;

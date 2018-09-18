@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.asistenciaComputadoras.control.AccesoriosControl;
-import com.asistenciaComputadoras.control.CelularControl;
-import com.asistenciaComputadoras.control.ClienteControl;
+import com.asistenciaComputadoras.control.ControlComputadora;
+import com.asistenciaComputadoras.control.ControlCliente;
 import com.asistenciaComputadoras.control.Conexion;
 import com.asistenciaComputadoras.control.DueñoControl;
-import com.asistenciaComputadoras.control.ReparacionControl;
-import com.asistenciaComputadoras.control.TecnicoControl;
+import com.asistenciaComputadoras.control.ControlReparacion;
+import com.asistenciaComputadoras.control.ControlTecnico;
 import com.asistenciaComputadoras.entity.Accesorios;
-import com.asistenciaComputadoras.entity.Celular;
+import com.asistenciaComputadoras.entity.Computadora;
 import com.asistenciaComputadoras.entity.Cliente;
 import com.asistenciaComputadoras.entity.Dueño;
 import com.asistenciaComputadoras.entity.Reparacion;
@@ -78,7 +78,7 @@ public class Menu {
 				int precio = ReadTypes.leerEntero(scanner, "Ingrese el precio: ");
 				String modelo = ReadTypes.leerCadena(scanner, "Ingrese un modelo: ");
 
-				accesoriosControl.insert(new Accesorios(nombre, precio, tipo));
+				accesoriosControl.insert(new Accesorios(nombre, precio, modelo));
 				break;
 			case 3:
 				System.out.println("\nBuscando accesorio...");
@@ -103,14 +103,14 @@ public class Menu {
 		}
 	}
 	private static void editarComputadora(Conexion conexion, Scanner scanner) throws Throwable {
-		ComputadoraControl computadoraControl = new ComputadoraControl(conexion);
+		ControlComputadora controlComputadora = new ControlComputadora(conexion);
 
 		int opcion = pedirInformacion(scanner);
 
 		switch (opcion) {
 			case 1:
 				System.out.println("\nListando computadoras...\n");
-				ArrayList<Computadora> lista = computadoraControl.list();
+				ArrayList<Computadora> lista = controlComputadora.list();
 				for (int i = 0; i < lista.size(); i++) {
 					System.out.println(lista.get(i).toString());
 				}
@@ -120,15 +120,14 @@ public class Menu {
 
 				String marca = ReadTypes.leerCadena(scanner, "Ingrese la marca: ");
 				String modelo = ReadTypes.leerCadena(scanner, "Ingrese el modelo: ");
-				String estadoComputadora = ReadTypes.leerCadena(scanner, "Ingrese el estado de la computadora: ");
-
-				computadoraControl.insert(new Computadora(marca, modelo, estadoComputadora));
+				
+				controlComputadora.insert(new Computadora(marca, modelo));
 				break;
 			case 3:
 				System.out.println("\nBuscando computadora...");
 				int codigo = ReadTypes.leerEntero(scanner, "Ingrese un codigo: ");
 				Computadora c = new Computadora(codigo);
-				computadoraControl.search(c);
+				controlComputadora.search(c);
 				System.out.println(c.toString());
 				break;
 			case 4:
@@ -137,9 +136,8 @@ public class Menu {
 				int codigoNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo: ");
 				String marcaNuevo = ReadTypes.leerCadena(scanner, "Ingrese la nueva marca: ");
 				String modeloNuevo = ReadTypes.leerCadena(scanner, "Ingrese el nuevo modelo: ");
-				String estadoComputadoraNuevo = ReadTypes.leerCadena(scanner, "Ingrese el nuevo estado de la computadora: ");
 
-				computdoraControl.update(new Computadora(codigoNuevo, marcaNuevo, modeloNuevo, estadoComputadoraNuevo));
+				controlComputadora.update(new Computadora(codigoNuevo, marcaNuevo, modeloNuevo));
 				break;
 			default:
 				System.err.println("\nError");
@@ -147,14 +145,14 @@ public class Menu {
 		}
 	}
 	private static void editarCliente(Conexion conexion, Scanner scanner) throws Throwable {
-		ClienteControl clienteControl = new ClienteControl(conexion);
+		ControlCliente controlCliente = new ControlCliente(conexion);
 
 		int opcion = pedirInformacion(scanner);
 
 		switch (opcion) {
 			case 1:
 				System.out.println("\nListando clientes...\n");
-				ArrayList<Cliente> lista = clienteControl.list();
+				ArrayList<Cliente> lista = controlCliente.list();
 				for (int i = 0; i < lista.size(); i++) {
 					System.out.println(lista.get(i).toString());
 				}
@@ -166,13 +164,13 @@ public class Menu {
 				String apellido = ReadTypes.leerCadena(scanner, "Ingrese el apellido: ");
 				int computadora = ReadTypes.leerEntero(scanner, "Ingrese la computadora: ");
 
-				clienteControl.insert(new Cliente(nombre, apellido, computadora));
+				controlCliente.insert(new Cliente(nombre, apellido, computadora));
 				break;
 			case 3:
 				System.out.println("\nBuscando cliente...");
 				int codigo = ReadTypes.leerEntero(scanner, "Ingrese un codigo: ");
 				Cliente c = new Cliente(codigo);
-				clienteControl.search(c);
+				controlCliente.search(c);
 				System.out.println(c.toString());
 				break;
 			case 4:
@@ -183,7 +181,7 @@ public class Menu {
 				String apellidoNuevo = ReadTypes.leerCadena(scanner, "Ingrese el nuevo apellido: ");
 				int computadoraNuevo = ReadTypes.leerEntero(scanner, "Ingrese la nueva computadora: ");
 
-				clienteControl.update(new Cliente(codigoNuevo, nombreNuevo, apellidoNuevo, computadoraNuevo));
+				controlCliente.update(new Cliente(codigoNuevo, nombreNuevo, apellidoNuevo, computadoraNuevo));
 				break;
 			default:
 				System.err.println("\nError");
@@ -238,14 +236,14 @@ public class Menu {
 		}
 	}
 	private static void editarReparacion(Conexion conexion, Scanner scanner) throws Throwable {
-		ReparacionControl reparacionControl = new ReparacionControl(conexion);
+		ControlReparacion controlReparacion = new ControlReparacion(conexion);
 
 		int opcion = pedirInformacion(scanner);
 
 		switch (opcion) {
 			case 1:
 				System.out.println("\nListando reparaciones...\n");
-				ArrayList<Reparacion> lista = reparacionControl.list();
+				ArrayList<Reparacion> lista = controlReparacion.list();
 				for (int i = 0; i < lista.size(); i++) {
 					System.out.println(lista.get(i).toString());
 				}
@@ -261,30 +259,29 @@ public class Menu {
 				Date fechaIngreso = ReadTypes.leerFecha(scanner, "Ingrese la fecha de ingreso: ");
 				Date fechaSalida = ReadTypes.leerFecha(scanner, "Ingrese la fecha de salida: ");
 
-				reparacionControl.insert(new Reparacion(problema, solucion, codigoComputadora, codigoTecnico, codigoCliente,
+				controlReparacion.insert(new Reparacion(problema, solucion, codigoComputadora, codigoTecnico, codigoCliente,
 						fechaIngreso, fechaSalida));
 				break;
 			case 3:
 				System.out.println("\nBuscando reparacion...");
 				int codigo = ReadTypes.leerEntero(scanner, "Ingrese un codigo: ");
 				Reparacion r = new Reparacion(codigo);
-				reparacionControl.search(r);
+				controlReparacion.search(r);
 				System.out.println(r.toString());
 				break;
 			case 4:
 				System.out.println("\nActualizando reparacion...");
 
-				int codigoNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo: ");
-				String problemaNuevo = ReadTypes.leerCadena(scanner, "Ingrese el problema: ");
-				String solucionNuevo = ReadTypes.leerCadena(scanner, "Ingrese la solucionn: ");
-				int codigoComputadoraNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo de la computadora: ");
-				int codigoTecnicoNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo del tecnico: ");
-				int codigoClienteNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo del cliente: ");
-				Date fechaIngresoNuevo = ReadTypes.leerFecha(scanner, "Ingrese la fecha de ingreso: ");
-				Date fechaSalidaNuevo = ReadTypes.leerFecha(scanner, "Ingrese la fecha de salida: ");
-
-				reparacionControl.update(new Reparacion(codigoNuevo, problemaNuevo, solucionNuevo, codigoComputadoraNuevo,
-						codigoTecnicoNuevo, codigoClienteNuevo, fechaIngresoNuevo, fechaSalidaNuevo));
+				int codNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo:  ");
+				int codComputadoraNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo de la computadora:   ");
+				int codTecnicoNuevo = ReadTypes.leerEntero(scanner, " Ingrese el codigo del tecnico:   " );
+				int codClienteNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo del cliente:   ");
+				String problemaNuevo = ReadTypes.leerCadena(scanner, "Ingrese el problema:  " );
+				String solucionNuevo = ReadTypes.leerCadena(scanner, " Ingrese la solucion:  ");
+				Date fechaIngresoNuevo = ReadTypes.leerFecha(scanner, "Ingrese la decha de ingreso:  ");
+				Date fechaSalidaNuevo = ReadTypes.leerFecha(scanner, "Ingrese la fecha de salida:   ");
+				
+				controlReparacion.update(new Reparacion(codNuevo, codComputadoraNuevo, codTecnicoNuevo, codClienteNuevo, problemaNuevo, solucionNuevo, fechaIngresoNuevo, fechaSalidaNuevo));
 				break;
 			default:
 				System.err.println("\nError");
@@ -293,14 +290,14 @@ public class Menu {
 	}
 
 	private static void editarTecnico(Conexion conexion, Scanner scanner) throws Throwable {
-		TecnicoControl tecnicoControl = new TecnicoControl(conexion);
+		ControlTecnico controlTecnico = new ControlTecnico(conexion);
 
 		int opcion = pedirInformacion(scanner);
 
 		switch (opcion) {
 			case 1:
 				System.out.println("\nListando tecnicos...\n");
-				ArrayList<Tecnico> lista = tecnicoControl.list();
+				ArrayList<Tecnico> lista = controlTecnico.list();
 				for (int i = 0; i < lista.size(); i++) {
 					System.out.println(lista.get(i).toString());
 				}
@@ -313,13 +310,13 @@ public class Menu {
 				String usuario = ReadTypes.leerCadena(scanner, "Ingrese el usuario: ");
 				String contraseña = ReadTypes.leerCadena(scanner, "Ingrese la contraseña: ");
 
-				tecnicoControl.insert(new Tecnico(nombre, apellido, usuario, contraseña));
+				controlTecnico.insert(new Tecnico(nombre, apellido, usuario, contraseña));
 				break;
 			case 3:
 				System.out.println("\nBuscando tecnico...");
 				int codigo = ReadTypes.leerEntero(scanner, "Ingrese un codigo: ");
 				Tecnico t = new Tecnico(codigo);
-				tecnicoControl.search(t);
+				controlTecnico.search(t);
 				System.out.println(t.toString());
 				break;
 			case 4:
@@ -331,7 +328,7 @@ public class Menu {
 				String usuarioNuevo = ReadTypes.leerCadena(scanner, "Ingrese el nuevo usuario: ");
 				String contraseñaNuevo = ReadTypes.leerCadena(scanner, "Ingrese la nueva contraseña: ");
 
-				tecnicoControl
+				controlTecnico
 						.update(new Tecnico(codigoNuevo, nombreNuevo, apellidoNuevo, usuarioNuevo, contraseñaNuevo));
 				break;
 			default:

@@ -1,6 +1,6 @@
 package com.asistenciaComputadoras.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Reparacion 
 
@@ -29,6 +29,20 @@ public class Reparacion
 		
 	}
 
+	public Reparacion(String problema, String solucion, int codComputadora, int codTecnico, int codCliente,
+			Date fechaIngreso, Date fechaSalida) {
+		this.problema = problema;
+		this.solucion = solucion;
+		this.codComputadora = codComputadora;
+		this.codTecnico = codTecnico;
+		this.codCliente = codCliente;
+		this.fechaIngreso = fechaIngreso;
+		this.fechaSalida = fechaSalida;
+	}
+
+	public Reparacion(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -108,6 +122,8 @@ public class Reparacion
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
+
+	
 	
 
 }

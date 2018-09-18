@@ -15,7 +15,15 @@ public class Cliente
 		this.computadora = computadora;
 	}
 	
+	public Cliente(String nombre, String apellido, int computadora) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.computadora = computadora;
+	}
 
+	public Cliente(int codigo) {
+		this.codigo = codigo;
+	}
 	public int getCodigo() {
 		return codigo;
 	}

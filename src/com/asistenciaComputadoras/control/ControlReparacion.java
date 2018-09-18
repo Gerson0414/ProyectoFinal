@@ -2,7 +2,7 @@ package com.asistenciaComputadoras.control;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import com.asistenciaComputadoras.entity.Reparacion;
 
@@ -30,10 +30,9 @@ public ArrayList<Reparacion> list() throws Throwable {
 		Date fechaIngreso = rs.getDate("fechaIngreso");
 		Date fechaSalida = rs.getDate("fechaSalida");
 		
-		lista_reparacion.add(new Reparacion(codigo, codComputadora, codTecnico, codCliente, problema, solucion, fechaIngreso, fechaSalida));
+		lista_reparacion.add(new Reparacion(codigo, codComputadora, codTecnico,codCliente, problema, solucion, fechaIngreso, fechaSalida));
 	}
 	return lista_reparacion;
-	
    }
 @Override
 public void insert (Reparacion reparacion) throws Throwable {
@@ -43,8 +42,8 @@ public void insert (Reparacion reparacion) throws Throwable {
 	conexion.preparedStatement().setInt(3, reparacion.getCodComputadora());
 	conexion.preparedStatement().setInt(4, reparacion.getCodTecnico());
 	conexion.preparedStatement().setInt(5, reparacion.getCodCliente());
-	conexion.preparedStatement().setDate(6, reparacion.getFechaIngreso());
-	conexion.preparedStatement().setDate(7, reparacion.getFechaSalida());
+	conexion.preparedStatement().setDate(6,  reparacion.getFechaIngreso());
+	conexion.preparedStatement().setDate(7,  reparacion.getFechaSalida());
 	conexion.CUD();
 }
 @Override
@@ -87,8 +86,8 @@ public void update(Reparacion reparacion) throws Throwable {
 		conexion.preparedStatement().setInt(3, codComputadora);
 		conexion.preparedStatement().setInt(4, codTecnico);
 		conexion.preparedStatement().setInt(5, codCliente);
-		conexion.preparedStatement().setDate(6, fechaIngreso);
-		conexion.preparedStatement().setDate(7, fechaSalida);
+		conexion.preparedStatement().setDate(6,  fechaIngreso);
+		conexion.preparedStatement().setDate(7,  fechaSalida);
 		conexion.preparedStatement().setInt(8, codigo);
 		conexion.CUD();
 				

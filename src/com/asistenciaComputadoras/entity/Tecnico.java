@@ -17,6 +17,17 @@ public class Tecnico
 		this.contraseñaTe = contraseñaTe;
 	}
 
+	public Tecnico(String nombreTe, String apellidoTe, String usuarioTe, String contraseñaTe) {
+		this.nombreTe = nombreTe;
+		this.apellidoTe = apellidoTe;
+		this.usuarioTe = usuarioTe;
+		this.usuarioTe = usuarioTe;
+	}
+
+	public Tecnico(int codigo) {
+		this.codigo = codigo;
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
