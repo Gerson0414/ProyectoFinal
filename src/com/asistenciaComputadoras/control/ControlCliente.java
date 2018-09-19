@@ -20,7 +20,7 @@ public class ControlCliente
 		rs = conexion.resultSet();
 		
 		while(rs.next()) {
-			int codigo = rs.getInt("Codigo_Cliente");
+			int codigo = rs.getInt("CodCliente");
 			int computadora = rs.getInt("computadora");
 			String nombre = rs.getString("nombre");
 			String apellido = rs.getString("apellido");
@@ -41,7 +41,7 @@ public class ControlCliente
 	public void search(Cliente cliente) throws Throwable {
 		ResultSet rs;
 		
-		conexion.SQL("Select * from cliente where Codigo_Cliente=?");
+		conexion.SQL("Select * from cliente where CodCliente=?");
 		conexion.preparedStatement().setInt(1, cliente.getCodigo());
 		rs = conexion.resultSet();
 		
@@ -61,7 +61,7 @@ public class ControlCliente
 			String nombre = cliente.getNombre();
 			String apellido = cliente.getApellido();
 			
-			conexion.SQL("Update cliente set nombre=?,apellido=?,computadora=? where Codigo_Cliente=?");
+			conexion.SQL("Update cliente set nombre=?,apellido=?,computadora=? where CodCliente=?");
 			conexion.preparedStatement().setString(1, nombre);
 			conexion.preparedStatement().setString(2, apellido);
 			conexion.preparedStatement().setInt(3, computadora);

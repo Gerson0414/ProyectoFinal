@@ -35,7 +35,7 @@ public class AccesoriosControl implements Control<Accesorios>{
 
 	@Override
 	public void insert(Accesorios accesorios) throws Throwable {
-		conexion.SQL("Insert into accesorios(nombre,precio,tipo) VALUES(?,?,?)");
+		conexion.SQL("Insert into accesorios(nombre,precio,modelo) VALUES(?,?,?)");
 		conexion.preparedStatement().setString(1, accesorios.getNombre());
 		conexion.preparedStatement().setInt(2, accesorios.getPrecio());
 		conexion.preparedStatement().setString(3, accesorios.getModelo());

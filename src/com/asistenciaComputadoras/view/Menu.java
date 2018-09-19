@@ -120,8 +120,10 @@ public class Menu {
 
 				String marca = ReadTypes.leerCadena(scanner, "Ingrese la marca: ");
 				String modelo = ReadTypes.leerCadena(scanner, "Ingrese el modelo: ");
+				String codigoCliente = ReadTypes.leerCadena(scanner, "Ingrese el codigoCliente:");
 				
-				controlComputadora.insert(new Computadora(marca, modelo));
+				int codCliente = Integer.parseInt(codigoCliente);
+				controlComputadora.insert(new Computadora(marca, modelo,codCliente));
 				break;
 			case 3:
 				System.out.println("\nBuscando computadora...");
@@ -162,7 +164,7 @@ public class Menu {
 
 				String nombre = ReadTypes.leerCadena(scanner, "Ingrese el nombre: ");
 				String apellido = ReadTypes.leerCadena(scanner, "Ingrese el apellido: ");
-				int computadora = ReadTypes.leerEntero(scanner, "Ingrese la computadora: ");
+				int computadora = ReadTypes.leerEntero(scanner, "Ingrese el codigo de la computadora: ");
 
 				controlCliente.insert(new Cliente(nombre, apellido, computadora));
 				break;
@@ -278,7 +280,7 @@ public class Menu {
 				int codClienteNuevo = ReadTypes.leerEntero(scanner, "Ingrese el codigo del cliente:   ");
 				String problemaNuevo = ReadTypes.leerCadena(scanner, "Ingrese el problema:  " );
 				String solucionNuevo = ReadTypes.leerCadena(scanner, " Ingrese la solucion:  ");
-				Date fechaIngresoNuevo = ReadTypes.leerFecha(scanner, "Ingrese la decha de ingreso:  ");
+				Date fechaIngresoNuevo = ReadTypes.leerFecha(scanner, "Ingrese la fecha de ingreso:  ");
 				Date fechaSalidaNuevo = ReadTypes.leerFecha(scanner, "Ingrese la fecha de salida:   ");
 				
 				controlReparacion.update(new Reparacion(codNuevo, codComputadoraNuevo, codTecnicoNuevo, codClienteNuevo, problemaNuevo, solucionNuevo, fechaIngresoNuevo, fechaSalidaNuevo));

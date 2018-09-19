@@ -21,7 +21,7 @@ public class Tecnico
 		this.nombreTe = nombreTe;
 		this.apellidoTe = apellidoTe;
 		this.usuarioTe = usuarioTe;
-		this.usuarioTe = usuarioTe;
+		this.contraseñaTe = contraseñaTe;
 	}
 
 	public Tecnico(int codigo) {

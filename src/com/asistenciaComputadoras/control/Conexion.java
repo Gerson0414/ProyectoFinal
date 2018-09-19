@@ -12,7 +12,7 @@ public class Conexion {
 	private PreparedStatement sentencia = null;
 	private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
 
-	private static final String DB_URL = "jdbc:mariadb://localhost/SerTecCom";
+	private static final String DB_URL = "jdbc:mariadb://localhost/serteccom";
 	
 	/**********************************************************************************************************************
 	 * CONSTRUCTOR
@@ -28,7 +28,7 @@ public class Conexion {
 			Class.forName(JDBC_DRIVER);
 
 			// Paso 3: Abrir la coneccion
-			System.out.println("Conectando a la base de datos...");
+			System.out.println("Conectando a la base de datos espere un momento por favor ...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (SQLException se) {
 			// Errores de JDBC

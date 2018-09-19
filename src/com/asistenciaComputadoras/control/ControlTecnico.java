@@ -27,11 +27,11 @@ public class ControlTecnico implements Control<Tecnico>
 		rs = conexion.resultSet();
 		
 		while(rs.next()){
-			int codigo = rs.getInt("Codigo Tecnico");
-			String nombreTe = rs.getString(" Nombre ");
-			String apellidoTe = rs.getString("Apellido");
-			String usuarioTe = rs.getString(" Usuario");
-			String contraseñaTe = rs.getString(" Contraseña");
+			int codigo = rs.getInt("CodTecnico");
+			String nombreTe = rs.getString("nombre");
+			String apellidoTe = rs.getString("apellido");
+			String usuarioTe = rs.getString("usuario");
+			String contraseñaTe = rs.getString("contraseña");
 			lista_tecnicos.add(new Tecnico(codigo, nombreTe, apellidoTe, usuarioTe, contraseñaTe ));
 			
 		}
@@ -39,7 +39,8 @@ public class ControlTecnico implements Control<Tecnico>
 	}
 	@Override
 	public void insert (Tecnico tecnico) throws Throwable{
-		conexion.SQL("Insert into tecnico (Nombre, Apellido, Usuario, Contraseña) VALUES(?,?,?,? ");
+		System.out.println(tecnico.getContraseñaTe());
+		conexion.SQL("Insert into tecnico (NombreTe, ApellidoTe, UsuarioTe, ContraseñaTe) VALUES(?,?,?,?) ");
 		conexion.preparedStatement().setString(1, tecnico.getNombreTe());
 		conexion.preparedStatement().setString(2, tecnico.getApellidoTe());
 		conexion.preparedStatement().setString(3, tecnico.getUsuarioTe());
@@ -49,7 +50,7 @@ public class ControlTecnico implements Control<Tecnico>
 	@Override
     public void search (Tecnico tecnico) throws Throwable {
     	ResultSet rs;
-    	conexion.SQL("Select * from tecnico where CodigoTecnico");
+    	conexion.SQL("Select * from tecnico where CodTecnico");
     	conexion.preparedStatement().setInt(1, tecnico.getCodigo());
     	rs = conexion.resultSet();
     	while (rs.next())
@@ -73,7 +74,7 @@ public class ControlTecnico implements Control<Tecnico>
     		String contraseñaTe = tecnico.getContraseñaTe();
     		
     		
-    		conexion.SQL(" Update tecnico set Nombre,Apellido,Usuario,Contraseña where Codigo_Tecnico");
+    		conexion.SQL(" Update tecnico set Nombre,Apellido,Usuario,Contraseña where CodTecnico");
     		conexion.preparedStatement().setString(1, nombreTe);
     		conexion.preparedStatement().setString(2, apellidoTe);
     		conexion.preparedStatement().setString(3, usuarioTe);

@@ -5,6 +5,7 @@ public class Computadora
 	private String marca;
 	private String modelo;
 	private int codigo;
+	private int codCliente;
 	
 	public Computadora(int codigo, String marca, String modelo)
 	{
@@ -15,6 +16,13 @@ public class Computadora
 	public Computadora(String marca, String modelo) {
 		this.marca = marca;
 		this.modelo = modelo;
+	}
+	public Computadora(String marca, String modelo, int codCliente){
+
+		this.marca = marca;
+		this.modelo = modelo;
+		this.codCliente = codCliente;
+		
 	}
 
 	public Computadora(int codigo) {
@@ -44,6 +52,9 @@ public class Computadora
 		this.codigo = codigo;
 	}
 
+	public int getCodCliente(){
+		return codCliente;
+	}
 	@Override
 	public String toString() {
 		return "Computadora [marca=" + marca + ", modelo=" + modelo + ", codigo=" + codigo + "]";

@@ -33,9 +33,10 @@ public class ControlComputadora implements Control<Computadora>
 	}
 	@Override
 	public void insert(Computadora computadora) throws Throwable {
-		conexion.SQL("Insert into computadora(marca,modelo)VALUES(?,?,?)");
+		conexion.SQL("Insert into computadora(marca,modelo,CodCliente)VALUES(?,?,?)");
 		conexion.preparedStatement().setString(1, computadora.getMarca());
 		conexion.preparedStatement().setString(2, computadora.getModelo());
+		conexion.preparedStatement().setInt(3, computadora.getCodCliente());
 		conexion.CUD();
 	}
 	@Override

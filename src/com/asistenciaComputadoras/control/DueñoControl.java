@@ -16,7 +16,7 @@ public class DueñoControl implements Control<Dueño>{
 	public ArrayList<Dueño> list() throws Throwable {
 		ArrayList<Dueño> lista_dueños = new ArrayList<>();
 		ResultSet rs; 
-		conexion.SQL("Select * from dueños");
+		conexion.SQL("Select * from dueño");
 
 		rs = conexion.resultSet();
 
